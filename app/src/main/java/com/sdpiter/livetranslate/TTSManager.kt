@@ -9,13 +9,20 @@ class TTSManager(context: Context) {
     
     private var tts: TextToSpeech? = null
     private var isInitialized = false
+    private var speechSpeed = 1.0f
     
     init {
         tts = TextToSpeech(context) { status ->
             if (status == TextToSpeech.SUCCESS) {
                 isInitialized = true
+                tts?.setSpeechRate(speechSpeed)
             }
         }
+    }
+    
+    fun setSpeed(speed: Float) {
+        speechSpeed = speed
+        tts?.setSpeechRate(speed)
     }
     
     fun speak(text: String, languageCode: String, onComplete: (() -> Unit)? = null) {
@@ -26,6 +33,7 @@ class TTSManager(context: Context) {
         
         val locale = getLocale(languageCode)
         tts?.language = locale
+        tts?.setSpeechRate(speechSpeed)
         
         tts?.setOnUtteranceProgressListener(object : UtteranceProgressListener() {
             override fun onStart(utteranceId: String?) {}
