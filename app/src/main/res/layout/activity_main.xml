@@ -46,7 +46,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="12dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -54,7 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="From:"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textColor="@color/text_primary"
                     android:fontFamily="sans-serif-medium"
                     android:textStyle="bold"
@@ -63,11 +66,13 @@
                 <Spinner
                     android:id="@+id/spinnerSourceLang"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="52dp"
                     android:layout_weight="1"
                     android:entries="@array/languages"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
                     android:spinnerMode="dropdown"
                     android:popupBackground="@color/white"
                     style="@style/Widget.AppCompat.Spinner"/>
@@ -93,7 +98,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="12dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -101,7 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="To:"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textColor="@color/primary_dark"
                     android:fontFamily="sans-serif-medium"
                     android:textStyle="bold"
@@ -110,11 +118,13 @@
                 <Spinner
                     android:id="@+id/spinnerTargetLang"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
+                    android:layout_height="52dp"
                     android:layout_weight="1"
                     android:entries="@array/languages"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
                     android:spinnerMode="dropdown"
                     android:popupBackground="@color/white"
                     style="@style/Widget.AppCompat.Spinner"/>
