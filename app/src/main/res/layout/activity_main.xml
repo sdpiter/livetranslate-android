@@ -24,59 +24,93 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp"/>
 
-    <!-- Source Language Spinner -->
-    <TextView
-        android:id="@+id/tvSourceLang"
-        android:layout_width="wrap_content"
+    <!-- Source Language Section -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardSourceLang"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="From:"
-        android:textSize="16sp"
-        android:textColor="@color/text_primary"
-        android:fontFamily="sans-serif-medium"
+        app:cardElevation="2dp"
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="@color/white"
+        app:strokeColor="@color/card_border"
+        app:strokeWidth="1dp"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp">
 
-    <Spinner
-        android:id="@+id/spinnerSourceLang"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvSourceLang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="From:"
+                android:textSize="18sp"
+                android:textColor="@color/text_primary"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginEnd="12dp"/>
+
+            <Spinner
+                android:id="@+id/spinnerSourceLang"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:entries="@array/languages"
+                android:background="@android:drawable/spinner_background"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Target Language Section -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardTargetLang"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:entries="@array/languages"
-        android:background="@android:drawable/spinner_background"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        app:layout_constraintTop_toTopOf="@id/tvSourceLang"
-        app:layout_constraintBottom_toBottomOf="@id/tvSourceLang"
-        app:layout_constraintStart_toEndOf="@id/tvSourceLang"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="12dp"/>
-
-    <!-- Target Language Spinner -->
-    <TextView
-        android:id="@+id/tvTargetLang"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="To:"
-        android:textSize="16sp"
-        android:textColor="@color/text_primary"
-        android:fontFamily="sans-serif-medium"
-        app:layout_constraintTop_toBottomOf="@id/tvSourceLang"
+        app:cardElevation="2dp"
+        app:cardCornerRadius="8dp"
+        app:cardBackgroundColor="@color/primary_light"
+        app:strokeColor="@color/primary"
+        app:strokeWidth="2dp"
+        app:layout_constraintTop_toBottomOf="@id/cardSourceLang"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="12dp"/>
-
-    <Spinner
-        android:id="@+id/spinnerTargetLang"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:entries="@array/languages"
-        android:background="@android:drawable/spinner_background"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        app:layout_constraintTop_toTopOf="@id/tvTargetLang"
-        app:layout_constraintBottom_toBottomOf="@id/tvTargetLang"
-        app:layout_constraintStart_toEndOf="@id/tvTargetLang"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="12dp"/>
+        android:layout_marginTop="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvTargetLang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="To:"
+                android:textSize="18sp"
+                android:textColor="@color/text_primary"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginEnd="12dp"/>
+
+            <Spinner
+                android:id="@+id/spinnerTargetLang"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:entries="@array/languages"
+                android:background="@android:drawable/spinner_background"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <!-- Source Text Label -->
     <TextView
@@ -87,7 +121,7 @@
         android:textSize="14sp"
         android:textColor="@color/text_secondary"
         android:fontFamily="sans-serif-medium"
-        app:layout_constraintTop_toBottomOf="@id/tvTargetLang"
+        app:layout_constraintTop_toBottomOf="@id/cardTargetLang"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="20dp"/>
 
