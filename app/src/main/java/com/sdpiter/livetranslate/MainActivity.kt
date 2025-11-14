@@ -7,11 +7,14 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -27,13 +30,15 @@ class MainActivity : AppCompatActivity() {
     
     private var sourceLanguage = "ru"
     private var targetLanguage = "en"
-    private var autoSpeak = false // Автоозвучивание после перевода
     
     companion object {
         private const val RECORD_AUDIO_PERMISSION_CODE = 1001
     }
     
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Apply theme before setContentView
+        applyTheme()
+        
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -44,14 +49,43 @@ class MainActivity : AppCompatActivity() {
         checkPermissions()
     }
     
+    private fun applyTheme() {
+        if (SettingsActivity.isDarkThemeEnabled(this)) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+    }
+    
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+    
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                startActivity(Intent(this, SettingsActivity::class.java))
+                true
+            }
+            R.id.action_history -> {
+                Toast.makeText(this, "History - Coming soon!", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+    
     private fun initializeManagers() {
         translationManager = TranslationManager()
         speechManager = SpeechManager(this)
         ttsManager = TTSManager(this)
+        
+        // Apply TTS speed from settings
+        ttsManager.setSpeed(SettingsActivity.getSpeechSpeed(this))
     }
     
     private fun setupSpinners() {
-        // Создаём адаптер с кастомным layout для чёрного текста
         val adapter = ArrayAdapter.createFromResource(
             this,
             R.array.languages,
@@ -59,17 +93,14 @@ class MainActivity : AppCompatActivity() {
         )
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
         
-        // Применяем к обоим Spinner
         binding.spinnerSourceLang.adapter = adapter
         binding.spinnerTargetLang.adapter = adapter
         
-        // Устанавливаем начальные значения
         binding.spinnerSourceLang.setSelection(0) // Russian
         binding.spinnerTargetLang.setSelection(1) // English
     }
     
     private fun setupListeners() {
-        // Language spinners
         binding.spinnerSourceLang.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 sourceLanguage = getLanguageCode(position)
@@ -85,28 +116,22 @@ class MainActivity : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
         
-        // Main Buttons
         binding.btnRecord.setOnClickListener { startRecording() }
         binding.btnTranslate.setOnClickListener { translateText() }
         binding.btnSpeak.setOnClickListener { speakTranslation() }
-        
-        // NEW: Swap Languages Button
         binding.fabSwapLanguages.setOnClickListener { swapLanguages() }
-        
-        // NEW: Clear Source Text Button
         binding.btnClearSource.setOnClickListener { clearSourceText() }
-        
-        // NEW: Copy Translation Button
         binding.btnCopyTranslation.setOnClickListener { copyTranslation() }
-        
-        // NEW: Share Translation Button
         binding.btnShareTranslation.setOnClickListener { shareTranslation() }
         
-        // Speech recognition callback
         speechManager.onResult = { text ->
             binding.etSourceText.setText(text)
             updateStatus("Recognition complete")
-            translateText()
+            
+            // Auto-translate if enabled
+            if (SettingsActivity.isAutoTranslateEnabled(this)) {
+                translateText()
+            }
         }
         
         speechManager.onError = { error ->
@@ -154,8 +179,8 @@ class MainActivity : AppCompatActivity() {
                 binding.etTranslatedText.setText(translation)
                 updateStatus("Translation complete")
                 
-                // NEW: Автоозвучивание если включено
-                if (autoSpeak && translation.isNotEmpty()) {
+                // Auto-speak if enabled in settings
+                if (SettingsActivity.isAutoSpeakEnabled(this@MainActivity) && translation.isNotEmpty()) {
                     speakTranslation()
                 }
             } catch (e: Exception) {
@@ -174,22 +199,22 @@ class MainActivity : AppCompatActivity() {
             return
         }
         
+        // Update TTS speed from settings
+        ttsManager.setSpeed(SettingsActivity.getSpeechSpeed(this))
+        
         updateStatus("Speaking...")
         ttsManager.speak(text, targetLanguage) {
             updateStatus("Ready")
         }
     }
     
-    // NEW: Swap source and target languages
     private fun swapLanguages() {
         val sourcePosition = binding.spinnerSourceLang.selectedItemPosition
         val targetPosition = binding.spinnerTargetLang.selectedItemPosition
         
-        // Меняем позиции в спиннерах
         binding.spinnerSourceLang.setSelection(targetPosition)
         binding.spinnerTargetLang.setSelection(sourcePosition)
         
-        // Меняем текст местами
         val sourceText = binding.etSourceText.text.toString()
         val translatedText = binding.etTranslatedText.text.toString()
         
@@ -199,7 +224,6 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "Languages swapped", Toast.LENGTH_SHORT).show()
     }
     
-    // NEW: Clear source text
     private fun clearSourceText() {
         binding.etSourceText.setText("")
         binding.etTranslatedText.setText("")
@@ -207,7 +231,6 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "Text cleared", Toast.LENGTH_SHORT).show()
     }
     
-    // NEW: Copy translation to clipboard
     private fun copyTranslation() {
         val text = binding.etTranslatedText.text.toString().trim()
         if (text.isEmpty()) {
@@ -219,10 +242,9 @@ class MainActivity : AppCompatActivity() {
         val clip = ClipData.newPlainText("Translation", text)
         clipboard.setPrimaryClip(clip)
         
-        Toast.makeText(this, "Translation copied to clipboard", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Translation copied", Toast.LENGTH_SHORT).show()
     }
     
-    // NEW: Share translation
     private fun shareTranslation() {
         val text = binding.etTranslatedText.text.toString().trim()
         if (text.isEmpty()) {
@@ -236,7 +258,7 @@ class MainActivity : AppCompatActivity() {
             type = "text/plain"
         }
         
-        startActivity(Intent.createChooser(shareIntent, "Share translation via"))
+        startActivity(Intent.createChooser(shareIntent, "Share translation"))
     }
     
     private fun getLanguageCode(position: Int): String {
@@ -277,20 +299,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
     
+    override fun onResume() {
+        super.onResume()
+        // Reload settings when returning from SettingsActivity
+        ttsManager.setSpeed(SettingsActivity.getSpeechSpeed(this))
+        updateStatus("Ready")
+    }
+    
     override fun onDestroy() {
         super.onDestroy()
         speechManager.destroy()
         ttsManager.shutdown()
-    }
-    
-    // Позволяет приложению работать в фоне
-    override fun onPause() {
-        super.onPause()
-        // Приложение может продолжить работу в фоне
-    }
-    
-    override fun onResume() {
-        super.onResume()
-        updateStatus("Ready")
     }
 }
