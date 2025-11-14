@@ -66,11 +66,11 @@
                     android:layout_height="48dp"
                     android:layout_weight="1"
                     android:entries="@array/languages"
-                    android:background="@drawable/spinner_background"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
                     android:spinnerMode="dropdown"
-                    android:popupBackground="@color/white"/>
+                    android:popupBackground="@color/white"
+                    style="@style/Widget.AppCompat.Spinner"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -113,11 +113,11 @@
                     android:layout_height="48dp"
                     android:layout_weight="1"
                     android:entries="@array/languages"
-                    android:background="@drawable/spinner_background"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
                     android:spinnerMode="dropdown"
-                    android:popupBackground="@color/white"/>
+                    android:popupBackground="@color/white"
+                    style="@style/Widget.AppCompat.Spinner"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -138,7 +138,7 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardSourceText"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="140dp"
             app:cardElevation="4dp"
             app:cardCornerRadius="12dp"
             app:cardBackgroundColor="@color/source_bg"
@@ -147,11 +147,7 @@
             app:layout_constraintTop_toBottomOf="@id/labelSourceText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/labelTranslation"
-            app:layout_constraintHeight_default="spread"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
-            app:layout_constraintVertical_weight="1">
+            android:layout_marginTop="6dp">
 
             <EditText
                 android:id="@+id/etSourceText"
@@ -166,8 +162,7 @@
                 android:background="@android:color/transparent"
                 android:inputType="textMultiLine|textCapSentences"
                 android:scrollbars="vertical"
-                android:fontFamily="sans-serif"
-                android:minHeight="120dp"/>
+                android:fontFamily="sans-serif"/>
         </com.google.android.material.card.MaterialCardView>
 
         <!-- Translation Text Label -->
@@ -181,27 +176,22 @@
             android:fontFamily="sans-serif-medium"
             app:layout_constraintTop_toBottomOf="@id/cardSourceText"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/cardTranslation"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"/>
+            android:layout_marginTop="12dp"/>
 
         <!-- Translation Card -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardTranslation"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="140dp"
             app:cardElevation="4dp"
             app:cardCornerRadius="12dp"
             app:cardBackgroundColor="@color/translation_bg"
             app:strokeColor="@color/primary_light"
             app:strokeWidth="2dp"
+            app:layout_constraintTop_toBottomOf="@id/labelTranslation"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/layoutButtons"
-            app:layout_constraintTop_toBottomOf="@id/labelTranslation"
-            app:layout_constraintHeight_default="spread"
-            android:layout_marginBottom="12dp"
-            app:layout_constraintVertical_weight="1">
+            android:layout_marginTop="6dp">
 
             <EditText
                 android:id="@+id/etTranslatedText"
@@ -218,8 +208,7 @@
                 android:inputType="textMultiLine"
                 android:scrollbars="vertical"
                 android:focusable="false"
-                android:fontFamily="sans-serif-medium"
-                android:minHeight="120dp"/>
+                android:fontFamily="sans-serif-medium"/>
         </com.google.android.material.card.MaterialCardView>
 
         <!-- Control Buttons -->
@@ -229,10 +218,10 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="3"
-            app:layout_constraintBottom_toTopOf="@id/tvStatus"
+            app:layout_constraintTop_toBottomOf="@id/cardTranslation"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="8dp">
+            android:layout_marginTop="16dp">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRecord"
@@ -287,9 +276,10 @@
             android:textSize="13sp"
             android:textColor="@color/status_text"
             android:fontFamily="sans-serif"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutButtons"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="8dp"/>
 
         <!-- Progress Bar -->
