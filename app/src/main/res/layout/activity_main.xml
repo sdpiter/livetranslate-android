@@ -1,287 +1,308 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="#F5F5F5"
-    tools:context=".MainActivity">
+    android:fillViewport="true"
+    android:background="#F5F5F5">
 
-    <!-- Title -->
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:textColor="@color/primary"
-        android:fontFamily="sans-serif-medium"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+        android:padding="16dp">
 
-    <!-- Source Language Section -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardSourceLang"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:cardElevation="2dp"
-        app:cardCornerRadius="8dp"
-        app:cardBackgroundColor="@color/white"
-        app:strokeColor="@color/card_border"
-        app:strokeWidth="1dp"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp">
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="4dp"/>
 
+        <!-- Source Language Section -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSourceLang"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="@color/white"
+            app:strokeColor="@color/card_border"
+            app:strokeWidth="1dp"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvSourceLang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="From:"
+                    android:textSize="18sp"
+                    android:textColor="@color/text_primary"
+                    android:fontFamily="sans-serif-medium"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="12dp"/>
+
+                <Spinner
+                    android:id="@+id/spinnerSourceLang"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:entries="@array/languages"
+                    android:background="@drawable/spinner_background"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:spinnerMode="dropdown"
+                    android:popupBackground="@color/white"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Target Language Section -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardTargetLang"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="@color/primary_light"
+            app:strokeColor="@color/primary"
+            app:strokeWidth="2dp"
+            app:layout_constraintTop_toBottomOf="@id/cardSourceLang"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tvTargetLang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="To:"
+                    android:textSize="18sp"
+                    android:textColor="@color/primary_dark"
+                    android:fontFamily="sans-serif-medium"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="12dp"/>
+
+                <Spinner
+                    android:id="@+id/spinnerTargetLang"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:entries="@array/languages"
+                    android:background="@drawable/spinner_background"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:spinnerMode="dropdown"
+                    android:popupBackground="@color/white"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Source Text Label -->
+        <TextView
+            android:id="@+id/labelSourceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Original Text"
+            android:textSize="13sp"
+            android:textColor="@color/text_secondary"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintTop_toBottomOf="@id/cardTargetLang"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="12dp"/>
+
+        <!-- Source Text Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSourceText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="@color/source_bg"
+            app:strokeColor="@color/card_border"
+            app:strokeWidth="1dp"
+            app:layout_constraintTop_toBottomOf="@id/labelSourceText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/labelTranslation"
+            app:layout_constraintHeight_default="spread"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
+            app:layout_constraintVertical_weight="1">
+
+            <EditText
+                android:id="@+id/etSourceText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top|start"
+                android:hint="Tap 🎤 Record to speak or type here..."
+                android:textColorHint="@color/hint_text"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:padding="16dp"
+                android:background="@android:color/transparent"
+                android:inputType="textMultiLine|textCapSentences"
+                android:scrollbars="vertical"
+                android:fontFamily="sans-serif"
+                android:minHeight="120dp"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Translation Text Label -->
+        <TextView
+            android:id="@+id/labelTranslation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Translation"
+            android:textSize="13sp"
+            android:textColor="@color/text_secondary"
+            android:fontFamily="sans-serif-medium"
+            app:layout_constraintTop_toBottomOf="@id/cardSourceText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/cardTranslation"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"/>
+
+        <!-- Translation Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardTranslation"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="@color/translation_bg"
+            app:strokeColor="@color/primary_light"
+            app:strokeWidth="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/layoutButtons"
+            app:layout_constraintTop_toBottomOf="@id/labelTranslation"
+            app:layout_constraintHeight_default="spread"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintVertical_weight="1">
+
+            <EditText
+                android:id="@+id/etTranslatedText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="top|start"
+                android:hint="Translation will appear here..."
+                android:textColorHint="@color/hint_text"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:padding="16dp"
+                android:background="@android:color/transparent"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"
+                android:focusable="false"
+                android:fontFamily="sans-serif-medium"
+                android:minHeight="120dp"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Control Buttons -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/layoutButtons"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="12dp"
-            android:gravity="center_vertical">
+            android:weightSum="3"
+            app:layout_constraintBottom_toTopOf="@id/tvStatus"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="8dp">
 
-            <TextView
-                android:id="@+id/tvSourceLang"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="From:"
-                android:textSize="18sp"
-                android:textColor="@color/text_primary"
-                android:fontFamily="sans-serif-medium"
-                android:layout_marginEnd="12dp"/>
-
-            <Spinner
-                android:id="@+id/spinnerSourceLang"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRecord"
                 android:layout_width="0dp"
-                android:layout_height="48dp"
+                android:layout_height="56dp"
                 android:layout_weight="1"
-                android:entries="@array/languages"
-                android:background="@android:drawable/spinner_background"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"/>
+                android:text="🎤\nRecord"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp"
+                app:backgroundTint="@color/primary"
+                android:layout_marginEnd="4dp"
+                android:elevation="2dp"
+                style="@style/Widget.MaterialComponents.Button"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnTranslate"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:text="🔄\nTranslate"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp"
+                app:backgroundTint="#4CAF50"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:elevation="2dp"
+                style="@style/Widget.MaterialComponents.Button"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSpeak"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:text="🔊\nSpeak"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp"
+                app:backgroundTint="@color/accent"
+                android:layout_marginStart="4dp"
+                android:elevation="2dp"
+                style="@style/Widget.MaterialComponents.Button"/>
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
 
-    <!-- Target Language Section -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardTargetLang"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:cardElevation="2dp"
-        app:cardCornerRadius="8dp"
-        app:cardBackgroundColor="@color/primary_light"
-        app:strokeColor="@color/primary"
-        app:strokeWidth="2dp"
-        app:layout_constraintTop_toBottomOf="@id/cardSourceLang"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <!-- Status Text -->
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="12dp"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:id="@+id/tvTargetLang"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="To:"
-                android:textSize="18sp"
-                android:textColor="@color/text_primary"
-                android:fontFamily="sans-serif-medium"
-                android:layout_marginEnd="12dp"/>
-
-            <Spinner
-                android:id="@+id/spinnerTargetLang"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:entries="@array/languages"
-                android:background="@android:drawable/spinner_background"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"/>
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Source Text Label -->
-    <TextView
-        android:id="@+id/labelSourceText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Original Text"
-        android:textSize="14sp"
-        android:textColor="@color/text_secondary"
-        android:fontFamily="sans-serif-medium"
-        app:layout_constraintTop_toBottomOf="@id/cardTargetLang"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"/>
-
-    <!-- Source Text Card -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardSourceText"
-        android:layout_width="0dp"
-        android:layout_height="160dp"
-        app:cardElevation="4dp"
-        app:cardCornerRadius="12dp"
-        app:cardBackgroundColor="@color/source_bg"
-        app:strokeColor="@color/card_border"
-        app:strokeWidth="1dp"
-        app:layout_constraintTop_toBottomOf="@id/labelSourceText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp">
-
-        <EditText
-            android:id="@+id/etSourceText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="top|start"
-            android:hint="Tap 🎤 Record to speak or type here..."
-            android:textColorHint="@color/hint_text"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            android:padding="16dp"
-            android:background="@android:color/transparent"
-            android:inputType="textMultiLine|textCapSentences"
-            android:scrollbars="vertical"
-            android:fontFamily="sans-serif"/>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Translation Text Label -->
-    <TextView
-        android:id="@+id/labelTranslation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Translation"
-        android:textSize="14sp"
-        android:textColor="@color/text_secondary"
-        android:fontFamily="sans-serif-medium"
-        app:layout_constraintTop_toBottomOf="@id/cardSourceText"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp"/>
-
-    <!-- Translation Card -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardTranslation"
-        android:layout_width="0dp"
-        android:layout_height="160dp"
-        app:cardElevation="4dp"
-        app:cardCornerRadius="12dp"
-        app:cardBackgroundColor="@color/translation_bg"
-        app:strokeColor="@color/primary_light"
-        app:strokeWidth="2dp"
-        app:layout_constraintTop_toBottomOf="@id/labelTranslation"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp">
-
-        <EditText
-            android:id="@+id/etTranslatedText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="top|start"
-            android:hint="Translation will appear here..."
-            android:textColorHint="@color/hint_text"
-            android:textColor="@color/text_primary"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:padding="16dp"
-            android:background="@android:color/transparent"
-            android:inputType="textMultiLine"
-            android:scrollbars="vertical"
-            android:focusable="false"
-            android:fontFamily="sans-serif-medium"/>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Control Buttons -->
-    <LinearLayout
-        android:id="@+id/layoutButtons"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        app:layout_constraintTop_toBottomOf="@id/cardTranslation"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnRecord"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_weight="1"
-            android:text="🎤\nRecord"
+            android:text="Ready"
             android:textSize="13sp"
-            android:textStyle="bold"
-            app:cornerRadius="12dp"
-            app:backgroundTint="@color/primary"
-            android:layout_marginEnd="6dp"
-            android:elevation="2dp"
-            style="@style/Widget.MaterialComponents.Button"/>
+            android:textColor="@color/status_text"
+            android:fontFamily="sans-serif"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="8dp"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnTranslate"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_weight="1"
-            android:text="🔄\nTranslate"
-            android:textSize="13sp"
-            android:textStyle="bold"
-            app:cornerRadius="12dp"
-            app:backgroundTint="#4CAF50"
-            android:layout_marginStart="3dp"
-            android:layout_marginEnd="3dp"
-            android:elevation="2dp"
-            style="@style/Widget.MaterialComponents.Button"/>
+        <!-- Progress Bar -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:visibility="gone"
+            android:indeterminateTint="@color/primary"
+            app:layout_constraintTop_toTopOf="@id/tvStatus"
+            app:layout_constraintBottom_toBottomOf="@id/tvStatus"
+            app:layout_constraintEnd_toStartOf="@id/tvStatus"
+            android:layout_marginEnd="8dp"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSpeak"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            android:layout_weight="1"
-            android:text="🔊\nSpeak"
-            android:textSize="13sp"
-            android:textStyle="bold"
-            app:cornerRadius="12dp"
-            app:backgroundTint="@color/accent"
-            android:layout_marginStart="6dp"
-            android:elevation="2dp"
-            style="@style/Widget.MaterialComponents.Button"/>
-    </LinearLayout>
-
-    <!-- Status Text -->
-    <TextView
-        android:id="@+id/tvStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ready"
-        android:textSize="14sp"
-        android:textColor="@color/status_text"
-        android:fontFamily="sans-serif"
-        app:layout_constraintTop_toBottomOf="@id/layoutButtons"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="12dp"/>
-
-    <!-- Progress Bar -->
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:visibility="gone"
-        android:indeterminateTint="@color/primary"
-        app:layout_constraintTop_toBottomOf="@id/tvStatus"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
