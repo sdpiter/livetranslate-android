@@ -46,21 +46,21 @@ class MainActivity : AppCompatActivity() {
     }
     
     private fun setupSpinners() {
-        // Создаём адаптер с кастомным layout
-        val adapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.languages,
-            R.layout.spinner_item
-        )
-        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
-        
-        // Применяем к обоим Spinner
-        binding.spinnerSourceLang.adapter = adapter
-        binding.spinnerTargetLang.adapter = adapter
-        
-        // Устанавливаем начальные значения
-        binding.spinnerSourceLang.setSelection(0) // Russian
-        binding.spinnerTargetLang.setSelection(1) // English
+    // Создаём адаптер с кастомным layout для чёрного текста
+    val adapter = ArrayAdapter.createFromResource(
+        this,
+        R.array.languages,
+        R.layout.spinner_item
+    )
+    adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
+    
+    // Применяем к обоим Spinner
+    binding.spinnerSourceLang.adapter = adapter
+    binding.spinnerTargetLang.adapter = adapter
+    
+    // Устанавливаем начальные значения
+    binding.spinnerSourceLang.setSelection(0) // Russian
+    binding.spinnerTargetLang.setSelection(1) // English
     }
     
     private fun setupListeners() {
