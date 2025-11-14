@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary colors (темная тема) -->
+    <color name="primary">#64B5F6</color>
+    <color name="primary_dark">#42A5F5</color>
+    <color name="primary_light">#1E88E5</color>
+    <color name="accent">#FFB74D</color>
+    
+    <!-- Background colors (темная тема) -->
+    <color name="translation_bg">#263238</color>
+    <color name="source_bg">#37474F</color>
+    
+    <!-- Text colors (темная тема) -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0BEC5</color>
+    <color name="status_text">#78909C</color>
+    <color name="hint_text">#546E7A</color>
+    
+    <!-- Spinner colors (темная тема) -->
+    <color name="spinner_text">#FFFFFF</color>
+    <color name="spinner_bg">#455A64</color>
+    
+    <!-- Standard colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- Card colors (темная тема) -->
+    <color name="card_border">#546E7A</color>
+</resources>
