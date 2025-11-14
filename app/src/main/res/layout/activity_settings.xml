@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:background="?android:attr/colorBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Settings"
+            android:text="@string/settings_title"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="@color/primary"
@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             app:cardElevation="2dp"
             app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="@color/source_bg"
             android:layout_marginBottom="16dp">
 
             <LinearLayout
@@ -39,7 +40,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Translation"
+                    android:text="@string/translation_settings"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="@color/text_primary"
@@ -62,14 +63,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Auto-speak translation"
+                            android:text="@string/auto_speak_title"
                             android:textSize="15sp"
                             android:textColor="@color/text_primary"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Automatically play translation after translating"
+                            android:text="@string/auto_speak_desc"
                             android:textSize="13sp"
                             android:textColor="@color/text_secondary"/>
                     </LinearLayout>
@@ -96,14 +97,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Auto-translate after recording"
+                            android:text="@string/auto_translate_title"
                             android:textSize="15sp"
                             android:textColor="@color/text_primary"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Start translation immediately after voice recording"
+                            android:text="@string/auto_translate_desc"
                             android:textSize="13sp"
                             android:textColor="@color/text_secondary"/>
                     </LinearLayout>
@@ -123,6 +124,7 @@
             android:layout_height="wrap_content"
             app:cardElevation="2dp"
             app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="@color/source_bg"
             android:layout_marginBottom="16dp">
 
             <LinearLayout
@@ -134,7 +136,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Speech"
+                    android:text="@string/speech_settings"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="@color/text_primary"
@@ -144,7 +146,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Speech speed"
+                    android:text="@string/speech_speed"
                     android:textSize="15sp"
                     android:textColor="@color/text_primary"
                     android:layout_marginBottom="8dp"/>
@@ -158,26 +160,24 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Slow"
+                        android:text="@string/speed_slow"
                         android:textSize="13sp"
                         android:textColor="@color/text_secondary"/>
 
-                    <com.google.android.material.slider.Slider
+                    <SeekBar
                         android:id="@+id/sliderSpeechSpeed"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:valueFrom="0.5"
-                        android:valueTo="2.0"
-                        android:value="1.0"
-                        android:stepSize="0.1"
+                        android:max="15"
+                        android:progress="10"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Fast"
+                        android:text="@string/speed_fast"
                         android:textSize="13sp"
                         android:textColor="@color/text_secondary"/>
                 </LinearLayout>
@@ -186,7 +186,7 @@
                     android:id="@+id/tvSpeedValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Speed: 1.0x"
+                    android:text="@string/speed_value"
                     android:textSize="13sp"
                     android:textColor="@color/primary"
                     android:layout_gravity="center"/>
@@ -199,6 +199,7 @@
             android:layout_height="wrap_content"
             app:cardElevation="2dp"
             app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="@color/source_bg"
             android:layout_marginBottom="16dp">
 
             <LinearLayout
@@ -210,7 +211,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Appearance"
+                    android:text="@string/appearance_settings"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="@color/text_primary"
@@ -232,14 +233,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Dark theme"
+                            android:text="@string/dark_theme_title"
                             android:textSize="15sp"
                             android:textColor="@color/text_primary"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Use dark colors for the interface"
+                            android:text="@string/dark_theme_desc"
                             android:textSize="13sp"
                             android:textColor="@color/text_secondary"/>
                     </LinearLayout>
@@ -257,7 +258,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardElevation="2dp"
-            app:cardCornerRadius="12dp">
+            app:cardCornerRadius="12dp"
+            app:cardBackgroundColor="@color/source_bg">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -268,7 +270,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="About"
+                    android:text="@string/about"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:textColor="@color/text_primary"
@@ -277,7 +279,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="LiveTranslate v1.0"
+                    android:text="@string/app_version"
                     android:textSize="14sp"
                     android:textColor="@color/text_primary"
                     android:layout_marginBottom="4dp"/>
@@ -285,7 +287,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Real-time translation with speech recognition"
+                    android:text="@string/app_description"
                     android:textSize="13sp"
                     android:textColor="@color/text_secondary"
                     android:layout_marginBottom="8dp"/>
@@ -293,7 +295,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="© 2024 sdpiter"
+                    android:text="@string/app_copyright"
                     android:textSize="12sp"
                     android:textColor="@color/text_secondary"/>
             </LinearLayout>
