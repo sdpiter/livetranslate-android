@@ -83,7 +83,7 @@
             android:id="@+id/fabSwapLanguages"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_sort"
+            android:src="@drawable/ic_swap"
             app:fabSize="mini"
             app:backgroundTint="@color/accent"
             app:tint="@color/white"
@@ -166,8 +166,7 @@
             android:contentDescription="Clear text"
             app:layout_constraintTop_toTopOf="@id/labelSourceText"
             app:layout_constraintBottom_toBottomOf="@id/labelSourceText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/text_secondary"/>
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <!-- Source Text Card -->
         <com.google.android.material.card.MaterialCardView
@@ -229,8 +228,7 @@
                 android:layout_height="32dp"
                 android:src="@android:drawable/ic_menu_save"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Copy translation"
-                app:tint="@color/text_secondary"/>
+                android:contentDescription="Copy translation"/>
 
             <ImageButton
                 android:id="@+id/btnShareTranslation"
@@ -239,8 +237,7 @@
                 android:src="@android:drawable/ic_menu_share"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Share translation"
-                android:layout_marginStart="8dp"
-                app:tint="@color/text_secondary"/>
+                android:layout_marginStart="8dp"/>
         </LinearLayout>
 
         <!-- Translation Card -->
