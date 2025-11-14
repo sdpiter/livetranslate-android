@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Primary colors -->
     <color name="primary">#2196F3</color>
     <color name="primary_dark">#1976D2</color>
+    <color name="primary_light">#BBDEFB</color>
     <color name="accent">#FF9800</color>
-    <color name="translation_bg">#F5F5F5</color>
-    <color name="status_text">#757575</color>
+    
+    <!-- Background colors -->
+    <color name="translation_bg">#E3F2FD</color>
+    <color name="source_bg">#FFFFFF</color>
+    
+    <!-- Text colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="status_text">#9E9E9E</color>
+    <color name="hint_text">#BDBDBD</color>
+    
+    <!-- Standard colors -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <!-- Card colors -->
+    <color name="card_border">#E0E0E0</color>
 </resources>
