@@ -64,18 +64,16 @@
                     android:layout_marginEnd="12dp"/>
 
                 <Spinner
-                    android:id="@+id/spinnerSourceLang"
-                    android:layout_width="0dp"
-                    android:layout_height="52dp"
-                    android:layout_weight="1"
-                    android:entries="@array/languages"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:spinnerMode="dropdown"
-                    android:popupBackground="@color/white"
-                    style="@style/Widget.AppCompat.Spinner"/>
+    android:id="@+id/spinnerSourceLang"
+    android:layout_width="0dp"
+    android:layout_height="56dp"
+    android:layout_weight="1"
+    android:entries="@array/languages"
+    android:paddingStart="4dp"
+    android:paddingEnd="4dp"
+    android:spinnerMode="dropdown"
+    android:popupBackground="@color/white"
+    style="@style/Widget.AppCompat.Spinner"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -115,19 +113,17 @@
                     android:textStyle="bold"
                     android:layout_marginEnd="12dp"/>
 
-                <Spinner
-                    android:id="@+id/spinnerTargetLang"
-                    android:layout_width="0dp"
-                    android:layout_height="52dp"
-                    android:layout_weight="1"
-                    android:entries="@array/languages"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
-                    android:spinnerMode="dropdown"
-                    android:popupBackground="@color/white"
-                    style="@style/Widget.AppCompat.Spinner"/>
+               <Spinner
+    android:id="@+id/spinnerTargetLang"
+    android:layout_width="0dp"
+    android:layout_height="56dp"
+    android:layout_weight="1"
+    android:entries="@array/languages"
+    android:paddingStart="4dp"
+    android:paddingEnd="4dp"
+    android:spinnerMode="dropdown"
+    android:popupBackground="@color/white"
+    style="@style/Widget.AppCompat.Spinner"/>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
