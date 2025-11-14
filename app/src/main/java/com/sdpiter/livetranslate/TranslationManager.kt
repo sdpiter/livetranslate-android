@@ -1,10 +1,13 @@
 package com.sdpiter.livetranslate
 
+import com.google.android.gms.tasks.Task
 import com.google.mlkit.nl.translate.TranslateLanguage
 import com.google.mlkit.nl.translate.Translation
 import com.google.mlkit.nl.translate.Translator
 import com.google.mlkit.nl.translate.TranslatorOptions
-import kotlinx.coroutines.tasks.await
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 class TranslationManager {
     
@@ -41,10 +44,15 @@ class TranslationManager {
     }
     
     suspend fun translate(text: String): String {
-        return try {
-            translator?.translate(text)?.await() ?: throw Exception("Translator not initialized")
-        } catch (e: Exception) {
-            throw Exception("Translation failed: ${e.message}")
+        return suspendCoroutine { continuation ->
+            translator?.translate(text)
+                ?.addOnSuccessListener { translatedText ->
+                    continuation.resume(translatedText)
+                }
+                ?.addOnFailureListener { exception ->
+                    continuation.resumeWithException(exception)
+                }
+                ?: continuation.resumeWithException(Exception("Translator not initialized"))
         }
     }
     
