@@ -16,6 +16,10 @@
     <color name="status_text">#9E9E9E</color>
     <color name="hint_text">#BDBDBD</color>
     
+    <!-- Spinner colors -->
+    <color name="spinner_text">#000000</color>
+    <color name="spinner_bg">#F5F5F5</color>
+    
     <!-- Standard colors -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
