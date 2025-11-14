@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         
         initializeManagers()
+        setupSpinners()
         setupListeners()
         checkPermissions()
     }
@@ -41,8 +43,22 @@ class MainActivity : AppCompatActivity() {
         translationManager = TranslationManager()
         speechManager = SpeechManager(this)
         ttsManager = TTSManager(this)
+    }
+    
+    private fun setupSpinners() {
+        // Создаём адаптер с кастомным layout
+        val adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.languages,
+            R.layout.spinner_item
+        )
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
         
-        // Set default languages
+        // Применяем к обоим Spinner
+        binding.spinnerSourceLang.adapter = adapter
+        binding.spinnerTargetLang.adapter = adapter
+        
+        // Устанавливаем начальные значения
         binding.spinnerSourceLang.setSelection(0) // Russian
         binding.spinnerTargetLang.setSelection(1) // English
     }
@@ -184,5 +200,16 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         speechManager.destroy()
         ttsManager.shutdown()
+    }
+    
+    // Позволяет приложению работать в фоне
+    override fun onPause() {
+        super.onPause()
+        // Приложение может продолжить работу в фоне
+    }
+    
+    override fun onResume() {
+        super.onResume()
+        updateStatus("Ready")
     }
 }
