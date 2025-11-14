@@ -39,8 +39,9 @@
             app:strokeWidth="1dp"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="12dp">
+            app:layout_constraintEnd_toStartOf="@id/fabSwapLanguages"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -77,6 +78,20 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- Swap Languages Button -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabSwapLanguages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_sort"
+            app:fabSize="mini"
+            app:backgroundTint="@color/accent"
+            app:tint="@color/white"
+            app:layout_constraintTop_toTopOf="@id/cardSourceLang"
+            app:layout_constraintBottom_toBottomOf="@id/cardTargetLang"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="Swap languages"/>
+
         <!-- Target Language Section -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardTargetLang"
@@ -89,8 +104,9 @@
             app:strokeWidth="2dp"
             app:layout_constraintTop_toBottomOf="@id/cardSourceLang"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="8dp">
+            app:layout_constraintEnd_toStartOf="@id/fabSwapLanguages"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -140,6 +156,19 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="12dp"/>
 
+        <!-- Clear Source Text Button -->
+        <ImageButton
+            android:id="@+id/btnClearSource"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Clear text"
+            app:layout_constraintTop_toTopOf="@id/labelSourceText"
+            app:layout_constraintBottom_toBottomOf="@id/labelSourceText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/text_secondary"/>
+
         <!-- Source Text Card -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardSourceText"
@@ -183,6 +212,36 @@
             app:layout_constraintTop_toBottomOf="@id/cardSourceText"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="12dp"/>
+
+        <!-- Copy and Share Buttons -->
+        <LinearLayout
+            android:id="@+id/layoutTranslationActions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="@id/labelTranslation"
+            app:layout_constraintBottom_toBottomOf="@id/labelTranslation"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageButton
+                android:id="@+id/btnCopyTranslation"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_menu_save"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Copy translation"
+                app:tint="@color/text_secondary"/>
+
+            <ImageButton
+                android:id="@+id/btnShareTranslation"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@android:drawable/ic_menu_share"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Share translation"
+                android:layout_marginStart="8dp"
+                app:tint="@color/text_secondary"/>
+        </LinearLayout>
 
         <!-- Translation Card -->
         <com.google.android.material.card.MaterialCardView
