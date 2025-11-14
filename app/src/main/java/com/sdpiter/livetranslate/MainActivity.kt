@@ -1,6 +1,10 @@
 package com.sdpiter.livetranslate
 
 import android.Manifest
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
@@ -23,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     
     private var sourceLanguage = "ru"
     private var targetLanguage = "en"
+    private var autoSpeak = false // Автоозвучивание после перевода
     
     companion object {
         private const val RECORD_AUDIO_PERMISSION_CODE = 1001
@@ -46,21 +51,21 @@ class MainActivity : AppCompatActivity() {
     }
     
     private fun setupSpinners() {
-    // Создаём адаптер с кастомным layout для чёрного текста
-    val adapter = ArrayAdapter.createFromResource(
-        this,
-        R.array.languages,
-        R.layout.spinner_item
-    )
-    adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
-    
-    // Применяем к обоим Spinner
-    binding.spinnerSourceLang.adapter = adapter
-    binding.spinnerTargetLang.adapter = adapter
-    
-    // Устанавливаем начальные значения
-    binding.spinnerSourceLang.setSelection(0) // Russian
-    binding.spinnerTargetLang.setSelection(1) // English
+        // Создаём адаптер с кастомным layout для чёрного текста
+        val adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.languages,
+            R.layout.spinner_item
+        )
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
+        
+        // Применяем к обоим Spinner
+        binding.spinnerSourceLang.adapter = adapter
+        binding.spinnerTargetLang.adapter = adapter
+        
+        // Устанавливаем начальные значения
+        binding.spinnerSourceLang.setSelection(0) // Russian
+        binding.spinnerTargetLang.setSelection(1) // English
     }
     
     private fun setupListeners() {
@@ -80,10 +85,22 @@ class MainActivity : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
         
-        // Buttons
+        // Main Buttons
         binding.btnRecord.setOnClickListener { startRecording() }
         binding.btnTranslate.setOnClickListener { translateText() }
         binding.btnSpeak.setOnClickListener { speakTranslation() }
+        
+        // NEW: Swap Languages Button
+        binding.fabSwapLanguages.setOnClickListener { swapLanguages() }
+        
+        // NEW: Clear Source Text Button
+        binding.btnClearSource.setOnClickListener { clearSourceText() }
+        
+        // NEW: Copy Translation Button
+        binding.btnCopyTranslation.setOnClickListener { copyTranslation() }
+        
+        // NEW: Share Translation Button
+        binding.btnShareTranslation.setOnClickListener { shareTranslation() }
         
         // Speech recognition callback
         speechManager.onResult = { text ->
@@ -136,6 +153,11 @@ class MainActivity : AppCompatActivity() {
                 val translation = translationManager.translate(text)
                 binding.etTranslatedText.setText(translation)
                 updateStatus("Translation complete")
+                
+                // NEW: Автоозвучивание если включено
+                if (autoSpeak && translation.isNotEmpty()) {
+                    speakTranslation()
+                }
             } catch (e: Exception) {
                 updateStatus("Translation error: ${e.message}")
                 Toast.makeText(this@MainActivity, "Translation failed", Toast.LENGTH_SHORT).show()
@@ -156,6 +178,65 @@ class MainActivity : AppCompatActivity() {
         ttsManager.speak(text, targetLanguage) {
             updateStatus("Ready")
         }
+    }
+    
+    // NEW: Swap source and target languages
+    private fun swapLanguages() {
+        val sourcePosition = binding.spinnerSourceLang.selectedItemPosition
+        val targetPosition = binding.spinnerTargetLang.selectedItemPosition
+        
+        // Меняем позиции в спиннерах
+        binding.spinnerSourceLang.setSelection(targetPosition)
+        binding.spinnerTargetLang.setSelection(sourcePosition)
+        
+        // Меняем текст местами
+        val sourceText = binding.etSourceText.text.toString()
+        val translatedText = binding.etTranslatedText.text.toString()
+        
+        binding.etSourceText.setText(translatedText)
+        binding.etTranslatedText.setText(sourceText)
+        
+        Toast.makeText(this, "Languages swapped", Toast.LENGTH_SHORT).show()
+    }
+    
+    // NEW: Clear source text
+    private fun clearSourceText() {
+        binding.etSourceText.setText("")
+        binding.etTranslatedText.setText("")
+        updateStatus("Ready")
+        Toast.makeText(this, "Text cleared", Toast.LENGTH_SHORT).show()
+    }
+    
+    // NEW: Copy translation to clipboard
+    private fun copyTranslation() {
+        val text = binding.etTranslatedText.text.toString().trim()
+        if (text.isEmpty()) {
+            Toast.makeText(this, "No translation to copy", Toast.LENGTH_SHORT).show()
+            return
+        }
+        
+        val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("Translation", text)
+        clipboard.setPrimaryClip(clip)
+        
+        Toast.makeText(this, "Translation copied to clipboard", Toast.LENGTH_SHORT).show()
+    }
+    
+    // NEW: Share translation
+    private fun shareTranslation() {
+        val text = binding.etTranslatedText.text.toString().trim()
+        if (text.isEmpty()) {
+            Toast.makeText(this, "No translation to share", Toast.LENGTH_SHORT).show()
+            return
+        }
+        
+        val shareIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, text)
+            type = "text/plain"
+        }
+        
+        startActivity(Intent.createChooser(shareIntent, "Share translation via"))
     }
     
     private fun getLanguageCode(position: Int): String {
