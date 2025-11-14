@@ -7,6 +7,9 @@ jobs:
   init:
     runs-on: ubuntu-latest
     
+    permissions:
+      contents: write
+    
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -19,38 +22,63 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
     
-    - name: Install Gradle
+    - name: Download and Install Gradle
       run: |
-        wget https://services.gradle.org/distributions/gradle-8.2-bin.zip
+        echo "Downloading Gradle 8.2..."
+        wget -q https://services.gradle.org/distributions/gradle-8.2-bin.zip
         unzip -q gradle-8.2-bin.zip
         sudo mv gradle-8.2 /opt/gradle
-        export PATH=/opt/gradle/bin:$PATH
+        echo "Gradle installed successfully"
     
     - name: Initialize Gradle Wrapper
       run: |
-        /opt/gradle/bin/gradle wrapper --gradle-version 8.2
+        echo "Creating Gradle Wrapper..."
+        /opt/gradle/bin/gradle wrapper --gradle-version 8.2 --distribution-type bin
         chmod +x gradlew
         chmod +x gradlew.bat
+        echo "Gradle Wrapper created successfully"
     
-    - name: Verify Wrapper
+    - name: Verify Wrapper Files
       run: |
-        ls -la gradle/wrapper/
-        file gradle/wrapper/gradle-wrapper.jar
+        echo "Checking wrapper files..."
+        ls -lah gradle/wrapper/
+        echo ""
+        echo "gradle-wrapper.jar size:"
+        du -h gradle/wrapper/gradle-wrapper.jar
+    
+    - name: Test Gradle Wrapper
+      run: |
+        echo "Testing Gradle Wrapper..."
+        ./gradlew --version
     
     - name: Configure Git
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
     
-    - name: Commit Wrapper files
+    - name: Commit Wrapper Files
       run: |
-        git add gradle/
+        echo "Adding wrapper files to git..."
+        git add gradle/wrapper/gradle-wrapper.jar
+        git add gradle/wrapper/gradle-wrapper.properties
         git add gradlew
         git add gradlew.bat
-        git add .gitignore
-        git commit -m "Add Gradle Wrapper files" || echo "No changes to commit"
+        
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "🚀 Add Gradle Wrapper files (automated)"
+          echo "Files committed successfully"
+        fi
     
-    - name: Push changes
-      run: git push origin main
+    - name: Push Changes
+      run: |
+        echo "Pushing changes to repository..."
+        git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Success Message
+      run: |
+        echo "✅ Gradle Wrapper successfully initialized!"
+        echo "📦 You can now run the main Android CI workflow"
