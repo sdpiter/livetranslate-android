@@ -11,7 +11,6 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Settings Title -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,7 +21,6 @@
             android:fontFamily="sans-serif-medium"
             android:layout_marginBottom="24dp"/>
 
-        <!-- Translation Settings -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,7 +44,6 @@
                     android:textColor="@color/text_primary"
                     android:layout_marginBottom="16dp"/>
 
-                <!-- Auto Speak Toggle -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -81,7 +78,6 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
 
-                <!-- Auto Translate Toggle -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -118,7 +114,6 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Speech Settings -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -142,7 +137,6 @@
                     android:textColor="@color/text_primary"
                     android:layout_marginBottom="16dp"/>
 
-                <!-- Speech Speed -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -164,15 +158,17 @@
                         android:textSize="13sp"
                         android:textColor="@color/text_secondary"/>
 
-                    <SeekBar
+                    <com.google.android.material.slider.Slider
                         android:id="@+id/sliderSpeechSpeed"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:max="15"
-                        android:progress="10"
                         android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"/>
+                        android:layout_marginEnd="8dp"
+                        android:valueFrom="0.5"
+                        android:valueTo="2.0"
+                        android:stepSize="0.1"
+                        android:value="1.0" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -193,7 +189,6 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Appearance Settings -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -217,7 +212,6 @@
                     android:textColor="@color/text_primary"
                     android:layout_marginBottom="16dp"/>
 
-                <!-- Dark Theme Toggle -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -253,7 +247,6 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- About -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
