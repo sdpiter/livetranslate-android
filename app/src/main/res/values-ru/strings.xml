@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">LiveTranslate</string>
     
-    <!-- Languages -->
     <string-array name="languages">
         <item>Русский</item>
         <item>Английский</item>
@@ -16,7 +15,6 @@
         <item>Итальянский</item>
     </string-array>
     
-    <!-- Settings -->
     <string name="settings_title">Настройки</string>
     <string name="translation_settings">Перевод</string>
     <string name="auto_speak_title">Автоозвучивание</string>
@@ -39,7 +37,6 @@
     <string name="app_description">Перевод в реальном времени с распознаванием речи</string>
     <string name="app_copyright">© 2024 sdpiter</string>
     
-    <!-- Main screen -->
     <string name="from">От:</string>
     <string name="to">На:</string>
     <string name="original_text">Исходный текст</string>
@@ -49,15 +46,12 @@
     <string name="speak">Озвучить</string>
     <string name="ready">Готов</string>
     
-    <!-- Hints -->
     <string name="source_hint">Нажмите 🎤 Запись или введите текст...</string>
     <string name="translation_hint">Перевод появится здесь...</string>
     
-    <!-- Menu -->
     <string name="menu_history">История</string>
     <string name="menu_settings">Настройки</string>
     
-    <!-- Toasts -->
     <string name="languages_swapped">Языки поменяны местами</string>
     <string name="text_cleared">Текст очищен</string>
     <string name="translation_copied">Перевод скопирован</string>
@@ -68,4 +62,17 @@
     <string name="mic_permission_required">Требуется разрешение на микрофон</string>
     <string name="permission_granted">Разрешение предоставлено</string>
     <string name="permission_denied">Разрешение отклонено</string>
+    
+    <string-array name="language_codes">
+        <item>ru</item>
+        <item>en</item>
+        <item>es</item>
+        <item>fr</item>
+        <item>de</item>
+        <item>zh</item>
+        <item>ja</item>
+        <item>ko</item>
+        <item>ar</item>
+        <item>it</item>
+    </string-array>
 </resources>
