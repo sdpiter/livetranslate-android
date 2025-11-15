@@ -77,7 +77,8 @@ class SettingsActivity : AppCompatActivity() {
         }
         
         // Speech speed slider
-        binding.sliderSpeechSpeed.addOnChangeListener { slider, value, fromUser ->
+        // СТАЛО:
+        binding.sliderSpeechSpeed.addOnChangeListener { _, value, fromUser ->
             if (fromUser) {
                 prefs.edit().putFloat(KEY_SPEECH_SPEED, value).apply()
                 updateSpeedLabel(value)
