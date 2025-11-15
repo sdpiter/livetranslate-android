@@ -81,8 +81,10 @@ class MainActivity : AppCompatActivity() {
         speechManager = SpeechManager(this)
         ttsManager = TTSManager(this)
         
-        // Apply TTS speed from settings
+        // ИСПРАВЛЕНО: Передаем сохраненные настройки голоса и скорости в TTSManager
         ttsManager.setSpeed(SettingsActivity.getSpeechSpeed(this))
+        ttsManager.setVoice(SettingsActivity.getSpeechVoice(this))
+        // --- КОНЕЦ ИЗМЕНЕНИЙ ---
     }
     
     private fun setupSpinners() {
@@ -301,9 +303,11 @@ class MainActivity : AppCompatActivity() {
     
     override fun onResume() {
         super.onResume()
-        // Reload settings when returning from SettingsActivity
+        // ИСПРАВЛЕНО: Обновляем ВСЕ настройки TTS при возвращении на экран
         ttsManager.setSpeed(SettingsActivity.getSpeechSpeed(this))
+        ttsManager.setVoice(SettingsActivity.getSpeechVoice(this))
         updateStatus("Ready")
+        // --- КОНЕЦ ИЗМЕНЕНИЙ ---
     }
     
     override fun onDestroy() {
