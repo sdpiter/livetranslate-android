@@ -41,7 +41,7 @@
     <string name="speech_speed">Speech Speed</string>
     <string name="speed_slow">Slow</string>
     <string name="speed_fast">Fast</string>
-    <string name="speed_value">%.1fx</string>
+    <string name="speed_value">Speed: %.1fx</string>
     
     <string name="appearance_settings">Appearance</string>
     <string name="dark_theme_title">Dark Theme</string>
@@ -75,6 +75,28 @@
     <string name="edit">Edit</string>
     <string name="close">Close</string>
 
+    <string name="from">From:</string>
+    <string name="to">To:</string>
+    <string name="original_text">Original Text</string>
+    <string name="translation">Translation</string>
+    <string name="record">Record</string>
+    <string name="translate">Translate</string>
+    <string name="ready">Ready</string>
+    
+    <string name="source_hint">Tap 🎤 Record or type text...</string>
+    <string name="translation_hint">Translation will appear here...</string>
+    
+    <string name="languages_swapped">Languages swapped</string>
+    <string name="text_cleared">Text cleared</string>
+    <string name="translation_copied">Translation copied</string>
+    <string name="no_translation_to_copy">No translation to copy</string>
+    <string name="no_translation_to_share">No translation to share</string>
+    <string name="no_translation_to_speak">No translation to speak</string>
+    <string name="no_text_to_translate">No text to translate</string>
+    <string name="mic_permission_required">Microphone permission required</string>
+    <string name="permission_granted">Permission granted</string>
+    <string name="permission_denied">Permission denied</string>
+    
     <string-array name="languages">
         <item>Russian</item>
         <item>English</item>
@@ -87,7 +109,7 @@
         <item>Arabic</item>
         <item>Italian</item>
     </string-array>
-
+    
     <string-array name="language_codes">
         <item>ru</item>
         <item>en</item>
