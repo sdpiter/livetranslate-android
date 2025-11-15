@@ -42,7 +42,9 @@ class TTSManager(context: Context) {
                 onComplete?.invoke()
             }
             
-            override fun onError(utteranceId: String?) {
+            // СТАЛО:
+@Suppress("DEPRECATION")
+override fun onError(utteranceId: String?) {
                 onComplete?.invoke()
             }
         })
