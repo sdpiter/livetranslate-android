@@ -39,6 +39,8 @@
     
     <string name="speech_settings">Речь</string>
     <string name="speech_speed">Скорость речи</string>
+    <string name="speech_voice">Голос</string>
+    <string name="voice_default">По умолчанию</string>
     <string name="speed_slow">Медленно</string>
     <string name="speed_fast">Быстро</string>
     <string name="speed_value">Скорость: %.1fx</string>
