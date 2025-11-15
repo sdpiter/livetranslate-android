@@ -186,7 +186,26 @@
                     android:textSize="13sp"
                     android:textColor="@color/primary"
                     android:layout_gravity="center"/>
-            </LinearLayout>
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/speech_voice"
+                    android:textSize="15sp"
+                    android:textColor="@color/text_primary"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"/>
+
+                <Spinner
+                    android:id="@+id/spinnerSpeechVoice"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+                    android:spinnerMode="dropdown"
+                    android:popupBackground="@color/white"
+                    style="@style/Widget.AppCompat.Spinner"/>
+                </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
