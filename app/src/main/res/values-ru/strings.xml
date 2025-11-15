@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">LiveTranslate</string>
-    
-    <string-array name="languages">
-        <item>Русский</item>
-        <item>Английский</item>
-        <item>Испанский</item>
-        <item>Французский</item>
-        <item>Немецкий</item>
-        <item>Китайский</item>
-        <item>Японский</item>
-        <item>Корейский</item>
-        <item>Арабский</item>
-        <item>Итальянский</item>
-    </string-array>
-    
+
+    <string name="microphone_permission_denied">Доступ к микрофону запрещен</string>
+    <string name="start_listening">Начать запись</string>
+    <string name="stop_listening">Остановить</string>
+    <string name="listening">Слушаю...</string>
+    <string name="processing">Обработка...</string>
+    <string name="translating">Перевод...</string>
+    <string name="speak">Озвучить</string>
+    <string name="copy">Копировать</string>
+    <string name="share">Поделиться</string>
+    <string name="clear">Очистить</string>
+
+    <string name="source_language">Исходный язык</string>
+    <string name="target_language">Целевой язык</string>
+    <string name="select_language">Выберите язык</string>
+
+    <string name="lang_ru">Русский</string>
+    <string name="lang_en">Английский</string>
+    <string name="lang_es">Испанский</string>
+    <string name="lang_fr">Французский</string>
+    <string name="lang_de">Немецкий</string>
+    <string name="lang_zh">Китайский</string>
+    <string name="lang_ja">Японский</string>
+    <string name="lang_ko">Корейский</string>
+    <string name="lang_ar">Арабский</string>
+    <string name="lang_it">Итальянский</string>
+
+    <string name="settings">Настройки</string>
     <string name="settings_title">Настройки</string>
+    
     <string name="translation_settings">Перевод</string>
     <string name="auto_speak_title">Автоозвучивание</string>
     <string name="auto_speak_desc">Автоматически озвучивать перевод</string>
@@ -37,20 +52,39 @@
     <string name="app_description">Перевод в реальном времени с распознаванием речи</string>
     <string name="app_copyright">© 2024 sdpiter</string>
     
+    <string name="error_speech_recognition">Ошибка распознавания речи</string>
+    <string name="error_translation">Ошибка перевода</string>
+    <string name="error_tts">Ошибка синтеза речи</string>
+    <string name="error_network">Ошибка сети. Проверьте подключение.</string>
+    <string name="error_permission">Требуется разрешение</string>
+    
+    <string name="permission_microphone_rationale">Требуется разрешение на микрофон для распознавания речи</string>
+    <string name="permission_settings">Открыть настройки</string>
+    
+    <string name="menu_settings">Настройки</string>
+    <string name="menu_history">История</string>
+    <string name="menu_help">Помощь</string>
+    <string name="menu_about">О приложении</string>
+    
+    <string name="ok">OK</string>
+    <string name="cancel">Отмена</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="save">Сохранить</string>
+    <string name="delete">Удалить</string>
+    <string name="edit">Изменить</string>
+    <string name="close">Закрыть</string>
+
     <string name="from">От:</string>
     <string name="to">На:</string>
     <string name="original_text">Исходный текст</string>
     <string name="translation">Перевод</string>
     <string name="record">Запись</string>
     <string name="translate">Перевести</string>
-    <string name="speak">Озвучить</string>
     <string name="ready">Готов</string>
     
     <string name="source_hint">Нажмите 🎤 Запись или введите текст...</string>
     <string name="translation_hint">Перевод появится здесь...</string>
-    
-    <string name="menu_history">История</string>
-    <string name="menu_settings">Настройки</string>
     
     <string name="languages_swapped">Языки поменяны местами</string>
     <string name="text_cleared">Текст очищен</string>
@@ -62,6 +96,19 @@
     <string name="mic_permission_required">Требуется разрешение на микрофон</string>
     <string name="permission_granted">Разрешение предоставлено</string>
     <string name="permission_denied">Разрешение отклонено</string>
+
+    <string-array name="languages">
+        <item>Русский</item>
+        <item>Английский</item>
+        <item>Испанский</item>
+        <item>Французский</item>
+        <item>Немецкий</item>
+        <item>Китайский</item>
+        <item>Японский</item>
+        <item>Корейский</item>
+        <item>Арабский</item>
+        <item>Итальянский</item>
+    </string-array>
     
     <string-array name="language_codes">
         <item>ru</item>
